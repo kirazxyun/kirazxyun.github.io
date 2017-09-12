@@ -230,3 +230,6 @@ var webpack = require('webpack');
 > 2、webpack既然是运行于node环境，是否意味着，我的js文件中也写node代码
 >
 > 3、plugins的顺序是否有关系，是否跟loader一样有输入与输出的关系
+>
+> 4、异步加载模块的处理
+
