@@ -26,7 +26,7 @@ rss: /atom.xml
 # 是否需要修改 root 路径
 # 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，
 # 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
-root: 
+root:
 
 # Content
 excerpt_link: 'more'
@@ -114,4 +114,4 @@ friends:
   友情链接5: http://localhost:4000/
   友情链接6: http://localhost:4000/
 
-aboutme: Kira，<br>我来自大山，我喜欢前端。
+aboutme: Kira，<br>这人很懒。
