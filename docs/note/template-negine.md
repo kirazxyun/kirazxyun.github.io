@@ -1,0 +1,304 @@
+# 实现一个基于字符串的模板引擎
+## 一、什么是模板引擎
+模板引擎定义为输入模板字符串 + 数据，得到渲染过的字符串。它看起来很神秘，能把十分麻烦的字符串拼接，变成像写html那样直观和简单。     
+
+使用模板引擎来替代普通的字符串拼接的优势很明显，首先手写的字符串拼接是很容易出错的，其次是非常的不容易维护，相信如果让你写50行的tpl会是一件很艰难的事情，何况以后还得在上面修修改改，不小心删掉一个+号就能排查半天bug。  
+
+而模板引擎能帮我们解决上面列举的所有问题，你所要做的是按照它给的模板语法，像写html一样写tpl，然后扔一串数据给它就行了。简单、直观还容易维护。 
+
+<!--more--> 
+
+我们看个简单的例子：
+```
+var data = {
+    name: 'lily',
+    age: 18
+};
+var tpl = "my name is <%name%>, I'm <%age%> years old.";
+
+tplEngine(tpl, data);
+//"my name is lily, I'm 18 years old."
+```
+再比如：
+
+```
+<ul>
+    <% for(var i = 0, len = items.length; i < len; i++){ %>
+        <li><% items[i] %></li>
+    <% } %>
+</ul>
+
+var item = ['香蕉', '苹果', '凤梨'];
+
+tplEngine(tpl, data);
+
+
+//我们希望得到的
+<ul>
+    <li>香蕉</li>
+    <li>苹果</li>
+    <li>凤梨</li>
+</ul>
+```
+## 二、模板引擎的实现原理
+
+既然想要实现一个最简单的模板引擎，我们就先定下目标，这个模板引擎能实现的功能如下：
+### 功能
+1.  简单的插值
+
+```
+<% name %>
+```
+
+2.  逻辑语句
+
+```
+<% for(var i = 0, len = array.length; i < len; i++) {
+    var item = array[i];
+    //do something with item
+} %>
+
+```
+
+### 实现
+我们将模板作为字符串传进模板引擎后，它会根据它自己的语法对其进行解析，转换成一个渲染方法后返回，然后调用这个方法，并将数据传进去，就能得到渲染好的字符串。这个是模板引擎实现的一个思路，根据这个思路，我们能给出模板引擎的一个框架如下：
+
+```
+var tplEngine = function(tpl, data) {
+    //对tpl进行转化
+    var render = function (data) {
+        //这部分是实时编译生成的函数体
+    }
+    return render(data);
+}
+```
+tplEngine即模板引擎，它接受两个参数，tpl即模板字符串，data是数据。  
+render是渲染函数，其接受一个参数，即数据，最终由render返回渲染好的字符串。
+
+可以看出，我们的关键问题是，渲染方法render的实现：
+#### 1、将字符串转化为函数
+因为我们传进去的模板是字符串，我们先不考虑中间的过程怎么样，我们先考虑当你将得到函数体的字符串格式的时候，怎么办，如何将其变成一个真正可执行的函数，不由得想到了eval，但是明显它并不能实现我们要的。    
+这里，就要给出一个大家比较不熟悉的用法：new Function();
+
+```
+//平常声明fun是这样的：
+var f = function(x, y) { return x + y; };
+
+//用Function是这样的：
+var f = new Function('x', 'y', 'return x + y;');
+//重点是，必须全部是字符串，前面是参数，最后一个参数是函数体
+```
+解决了这最后一公里的问题，我们将目光聚焦于如果将字符串转化为render的函数体。
+#### 2、提取要处理的内容
+我们得到一段字符串，首先得处理是将其进行分解：
+
+```
+<ul>
+    <% for(var i = 0, len = items.length; i < len; i++){ %>
+        <li><% items[i] %></li>
+    <% } %>
+</ul>
+```
+观察这段模板，我们能初步分解内容为：js和html    
+要从一段字符串中提取东西，相信大家都知道要用正则，
+没错我们正是要通过正则来实现匹配内容的提取。  
+
+根据js的边界符，我们给出这样的一个则正表达式：
+
+```
+var jsReg = /<%([^%>]+)?%>/g;
+```
+我们将上面的模板分解到一个数组中试试看：
+
+```
+//字符串：
+ var tpl = "<ul>" + 
+            "<% for(var i = 0, len = items.length; i < len; i++){ %>" + 
+                "<li><% items[i] %></li>" +
+            "<% } %>" +
+           "</ul>";
+
+//提取js的正则
+var match = [];
+var reg = /<%([^%>]+)?%>/g;
+var str = [];
+var cursor = 0;
+while(match = reg.exec(tpl)) {
+    var index = match.index;
+    var jsCode = match[1];
+    var html = tpl.slice(cursor, index);
+    str.push(html)
+    str.push(jsCode);
+    cursor = index + match[0].length;
+}
+str.push(tpl.substr(cursor, tpl.length - cursor));
+console.log(str);
+//"<ul>"
+//" for(var i = 0, len = items.length; i < len; i++){ "
+//"<li>"
+//" items[i] "
+//"</li>"
+//" } "
+//"</ul>"
+
+```
+结果很棒，是我们想要的结果，将js和html都分离开了。但是其实上面这个分解还不够充分，想想我们一开始定的目标，js是分为插值和逻辑语句的，很容易分辨出：
+
+```
+//插值：
+"items[i] "
+
+//语句：
+for(var i = 0, len = items.length; i < len; i++){
+}
+```
+这边我们再给出一个正则：
+
+```
+
+//判断逻辑语句的正则
+var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g
+```
+可以看到这边是用枚举的方式，这样其实并不完整，我们最后会给出改进方法。 
+这样，我们就把模板分解为：
+- 变量插值
+- 可执行的逻辑语句
+- 普通的html字符串
+
+#### 3、用数组拼接字符串
+如果现在你要写的是字符串拼接，你会怎么做，我们先给出一个平常写字符串拼接的例子，帮助大家理解如何处理上面分解出的3种模板分支：
+
+```
+var html = [];
+html.push('<ul>');
+for(var i = 0, len = data.items.length; i < len; i++){
+   html.push('<li>', data.items[i], '</li>');
+}
+html.push('ul');
+return html.join('');
+```
+我们经常采用数组来拼接字符串，当然也可以用加号来拼接，看大家习惯，不过这边要说的一点是在低版本的ie中join方法的效率是比较好的，但是在现代流行的浏览器中，加号拼接的效率要远高于join。    
+
+这边，我们不难总结出以下处理方法：
+
+```
+var html = [];
+if(变量) { 
+    html.push(变量);
+} else if(语句){
+    执行
+} else {
+    html.push(字符串);
+}
+return html.join('');
+```
+最终将其进行字符串拼接，函数体就搞定了，如下：
+
+```
+var funcBody = "var html = [];\n";
+var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g; 
+var connectFuncBody = function(line, isJsCode) {
+        if(isJsCode) {
+            if(logicReg.test(line)) {
+                funcBody += line + '\n'; //js逻辑就不要放到html.push里面
+            } else {
+        	funcBody += 'html.push(' + line + ');\n'; //变量直接放到html.push
+            }
+        } else {
+        	funcBody += 'html.push("' + line.replace(/"/g, '\\"') + '");\n'; //html转义引号后，放到html.push
+        }
+};
+var funcBody = "return html.join('');\n";
+```
+connectFuncBody接受两个参数，line是分解出的某个分支，isJsCode标识它是不是一个js，可能是变量，也可能是语句。  
+对于变量，将其拼接到html.push中，这样最终它就会变成html.push(item[i]);  
+对于语句，将其直接拼接到函数体上，这样最终它在运行的时候就直接执行了。
+对于字符串，则进行了一次双引号的转义操作，这是因为我们push的时候用的双引号作为string的标识。
+
+#### 4、引擎函数
+到此为止，我们已经得到了渲染函数的函数体，也知道如何将其转换为函数，那我们的引擎函数就基本成形了，如下：
+
+```
+var tplEngine = function(tpl, data) {
+    //对tpl进行转化
+    var match = [];
+    var jsReg = /<%([^%>]+)?%>/g;
+    var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g;
+    var cursor = 0;
+    var funcBody = 'var html = [];\n';
+    //拼接函数
+    var connectFuncBody = function(line, isJsCode) {
+        if(isJsCode) {
+            if(logicReg.test(line)) {
+                funcBody += line + '\n'; //js逻辑就不要放到html.push里面
+            } else {
+                funcBody += 'html.push(' + line + ');\n';
+            }
+        } else {
+            funcBody += 'html.push("' + line.replace(/"/g, '\\"') + '");\n';
+        }
+    };
+    while(match = jsReg.exec(tpl)) {
+        var index = match.index;
+        var jsCode = match[1];
+        var html = tpl.slice(cursor, index);
+        connectFuncBody(html);
+        connectFuncBody(jsCode, true);
+        cursor = index + match[0].length;
+    }
+    connectFuncBody(tpl.substr(cursor, tpl.length - cursor));
+    funcBody += 'return html.join("");';
+    return new Function('data', funcBody)(data);
+};
+```
+#### 5、应用
+要真正的用html的方式编写tpl，那就得将tpl存储在script（template）或者 放在text或者textarea里面，它会提供一个ID，我们通过id去找，找的到就将其取出来，text或者textarea用value，其他的用innerHTML。  
+在tepEngine外面再包装一层如下：
+
+```
+var engine = function (str, data) {
+	var html = '';
+	var el = document.getElementById(str);
+	if(!el) {
+		html = str;
+	} else {
+		if(/^(INPUT|TEXTAREA)$/.test(el.nodeName)) {
+			html = el.value;
+		} else {
+			html = el.innerHTML;
+		}
+	}
+	return tplEngine(html, data);
+};
+```
+这个函数很好理解，它接受一个字符串和一个数据，字符串可以是一个id，我们先在页面找id，如果没有内容则将其判定为一个模板，直接执行tplEngine。如果根据id找到内容了，则将其取出来，再传到tplEngine里面执行。   
+#### 6、总结
+
+这段不到30行的代码就能实现一个简单的模板引擎，其中还有很多是需要补充和完善的，但我们今天只是为了学习引擎函数的实现原理，就不再细化。  
+总结一下：  
+> #### 模板引擎的实现原理
+>
+> 1.   利用正则匹配出3种模块分支。
+> 2.   根据每个分支的不同拼接函数体
+> 3.   利用Function转换渲染函数
+> 4.   data放进去执行渲染函数
+>
+
+基于字符串的前端模板引擎非常的多，但是其原理大同小异，了解了基本原理再去理解各类模板引擎就容易的多。  
+
+### 三、遗留问题
+
+这个引擎模板确实有很多要改进的地方，最后的最后，我们给出几个前进的方向。
+
+1. 预编译：这个可以参考一下传说中最快的模板引擎artTemplate，因为渲染函数都是动态编译的，所以每次都是渲染赋值和编译一起执行，而预编译则是在你要渲染赋值之前就把渲染函数准备好了，类似于require的编译。
+2. 缓存：将同一个id或者模板编译成的渲染函数存起来，以便多次使用，不必每次都编译。
+3. 区分逻辑和变量的边界符，这个就是不必要进行逻辑语句的判断，上文提过要改进的地方。
+4. 对模板去掉前后空格
+
+
+[Google]: http://google.com/
+#### 参考文章
+1、[JavaScript模板引擎原理，几行代码的事儿](http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html)
+
+2、[前端模板的原理和实现](https://segmentfault.com/a/1190000006990480)
+
