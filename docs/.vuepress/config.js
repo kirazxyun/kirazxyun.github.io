@@ -1,6 +1,8 @@
 module.exports = {
   title: 'KIRA',
   description: '不能懒',
+  base: '/',
+  dest: './docs/.vuepress/dist',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -18,6 +20,7 @@ module.exports = {
         collapsable: false,
         children: [
           '',
+          'git-commit',
           'vscode-eslint',
           'vscode-standard'
         ]

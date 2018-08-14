@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KIRA | yomi后端环境</title>
+    <meta name="description" content="不能懒">
+    
+    
+    <link rel="preload" href="/assets/css/21.styles.367b178b.css" as="style"><link rel="preload" href="/assets/js/app.c7ea4069.js" as="script"><link rel="preload" href="/assets/js/13.b0a21dde.js" as="script"><link rel="prefetch" href="/assets/js/11.91b58786.js"><link rel="prefetch" href="/assets/js/1.3b0d0829.js"><link rel="prefetch" href="/assets/js/2.4f22a659.js"><link rel="prefetch" href="/assets/js/3.0f5fbe87.js"><link rel="prefetch" href="/assets/js/4.77d25354.js"><link rel="prefetch" href="/assets/js/5.75e861e3.js"><link rel="prefetch" href="/assets/js/6.0a061588.js"><link rel="prefetch" href="/assets/js/7.21cd4cfd.js"><link rel="prefetch" href="/assets/js/8.0a99f7a6.js"><link rel="prefetch" href="/assets/js/9.96d08268.js"><link rel="prefetch" href="/assets/js/10.ecd97e13.js"><link rel="prefetch" href="/assets/js/0.d865b241.js"><link rel="prefetch" href="/assets/js/12.1aa41f0d.js"><link rel="prefetch" href="/assets/js/14.a32a2f52.js"><link rel="prefetch" href="/assets/js/15.b3438c76.js"><link rel="prefetch" href="/assets/js/16.9a3d1b2f.js"><link rel="prefetch" href="/assets/js/17.fed3d3c7.js"><link rel="prefetch" href="/assets/js/18.56fadc59.js"><link rel="prefetch" href="/assets/js/19.2b4be690.js"><link rel="prefetch" href="/assets/js/20.4aca21d7.js">
+    <link rel="stylesheet" href="/assets/css/21.styles.367b178b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      KIRA
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link router-link-active">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link router-link-active">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>node</span><!----></p><ul class="sidebar-group-items"><li><a href="/node/" class="sidebar-link">/node/</a></li><li><a href="/node/build.html" class="active sidebar-link">yomi后端环境</a></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="yomi后端环境"><a href="#yomi后端环境" aria-hidden="true" class="header-anchor">#</a> yomi后端环境</h1><p>为了加深对node的理解，计划自己倒腾一个系统来练练手，刚好负责一个交流会方案的设计，苦于没有好的地方可以用于发布和管理文章，就打算自己写一个系统来管理。</p><p><a href="https://github.com/kirazxyun/yomi-node" target="_blank" rel="noopener noreferrer">项目地址</a></p><p>##功能目标</p><p>一期：</p><ul><li>用户登录</li><li>文章展示</li></ul><p>##技术选型</p><ul><li>应用框架： express</li><li>数据库： mongodb、mongoose</li><li>表单处理：formidable</li><li>语法检查：standard</li></ul><p>##目录结构</p><pre class="language-bash"><code>
+<span class="token operator">|</span>-- bin                              // 执行程序目录
+<span class="token operator">|</span>-- <span class="token operator">|</span>-- www                          // 启动文件
+<span class="token operator">|</span>-- config                           // 项目开发环境配置目录
+<span class="token operator">|</span>	<span class="token operator">|</span>-- index.js                     // 定义各种环境变量
+<span class="token operator">|</span>-- controllers                      // 各个模块控制器目录
+<span class="token operator">|</span>   <span class="token operator">|</span>-- index.js                     // 加载各个控制器模块
+<span class="token operator">|</span>-- middleware                       // 中间件目录
+<span class="token operator">|</span>   <span class="token operator">|</span>-- index.js                     // 加载各个中间件
+<span class="token operator">|</span>-- models                           // 数据处理模块目录
+<span class="token operator">|</span>   <span class="token operator">|</span>-- index.js                     // 加载各个数据处理模块
+<span class="token operator">|</span>-- public                           // 静态资源目录
+<span class="token operator">|</span>   <span class="token operator">|</span>-- index.html                   // 网站首页
+<span class="token operator">|</span>-- routes                           // 路由目录
+<span class="token operator">|</span>   <span class="token operator">|</span>-- index.js                     // 加载和分发路由
+<span class="token operator">|</span>-- .editorconfig                    // 编辑器配置
+<span class="token operator">|</span>-- .gitignore                       // git忽略配置
+<span class="token operator">|</span>-- app.js                           // 入口文件
+<span class="token operator">|</span>-- package.json                     // 项目配置文件
+<span class="token operator">|</span>-- README.md                        // 项目说明文件
+
+</code></pre><p>##quick start</p><pre class="language-bash"><code><span class="token comment">#克隆代码</span>
+<span class="token function">git</span> clone https://github.com/kirazxyun/yomi-node.git
+
+<span class="token comment">#进入项目</span>
+<span class="token function">cd</span> yomi-node
+
+<span class="token comment"># 添加依赖</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># 本地服务 </span>
+<span class="token function">npm</span> start
+
+<span class="token comment">#访问 localhost:3000</span>
+</code></pre></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/node/" class="prev router-link-active">
+          /node/
+        </a></span><!----></p></div></div></div></div>
+    <script src="/assets/js/13.b0a21dde.js" defer></script><script src="/assets/js/app.c7ea4069.js" defer></script>
+  </body>
+</html>

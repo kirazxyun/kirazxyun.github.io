@@ -4,8 +4,9 @@
   "description": "blog",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "npm run build && git add . && git commit -m 'deploy' && git push"
   },
   "author": "kira",
   "license": "ISC",
