@@ -1,7 +1,6 @@
 module.exports = {
   title: 'KIRA',
   description: '不能懒',
-  base: '/',
   dest: './docs/.vuepress/dist',
   themeConfig: {
     nav: [
