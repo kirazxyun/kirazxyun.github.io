@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KIRA | 在vscode中使用standard</title>
+    <meta name="description" content="不能懒">
+    
+    
+    <link rel="preload" href="/assets/css/21.styles.367b178b.css" as="style"><link rel="preload" href="/assets/js/app.019e46b7.js" as="script"><link rel="preload" href="/assets/js/6.0a061588.js" as="script"><link rel="prefetch" href="/assets/js/11.91b58786.js"><link rel="prefetch" href="/assets/js/1.3b0d0829.js"><link rel="prefetch" href="/assets/js/2.4f22a659.js"><link rel="prefetch" href="/assets/js/3.0f5fbe87.js"><link rel="prefetch" href="/assets/js/4.77d25354.js"><link rel="prefetch" href="/assets/js/5.75e861e3.js"><link rel="prefetch" href="/assets/js/7.21cd4cfd.js"><link rel="prefetch" href="/assets/js/8.009092f2.js"><link rel="prefetch" href="/assets/js/9.96d08268.js"><link rel="prefetch" href="/assets/js/10.ecd97e13.js"><link rel="prefetch" href="/assets/js/0.d865b241.js"><link rel="prefetch" href="/assets/js/12.1aa41f0d.js"><link rel="prefetch" href="/assets/js/13.b0a21dde.js"><link rel="prefetch" href="/assets/js/14.a32a2f52.js"><link rel="prefetch" href="/assets/js/15.b3438c76.js"><link rel="prefetch" href="/assets/js/16.9a3d1b2f.js"><link rel="prefetch" href="/assets/js/17.fed3d3c7.js"><link rel="prefetch" href="/assets/js/18.56fadc59.js"><link rel="prefetch" href="/assets/js/19.2b4be690.js"><link rel="prefetch" href="/assets/js/20.4aca21d7.js">
+    <link rel="stylesheet" href="/assets/css/21.styles.367b178b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      KIRA
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link router-link-active">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link router-link-active">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>编码规范</span><!----></p><ul class="sidebar-group-items"><li><a href="/rule/" class="sidebar-link">封面</a></li><li><a href="/rule/git-commit.html" class="sidebar-link">git commit message规范</a></li><li><a href="/rule/vscode-eslint.html" class="sidebar-link">在vscode中使用eslint</a></li><li><a href="/rule/vscode-standard.html" class="active sidebar-link">在vscode中使用standard</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="在vscode中使用standard"><a href="#在vscode中使用standard" aria-hidden="true" class="header-anchor">#</a> 在vscode中使用standard</h1><h3 id="一、安装vs插件"><a href="#一、安装vs插件" aria-hidden="true" class="header-anchor">#</a> 一、安装vs插件</h3><p>JavaScript Standard Style
+</p><h3 id="二、安装依赖包"><a href="#二、安装依赖包" aria-hidden="true" class="header-anchor">#</a> 二、安装依赖包</h3><p>1、babel-eslint or eslint
+2、standard
+3、eslint-plugin-html</p><p>在项目中执行</p><pre class="language-text"><code>npm install babel-eslint standard eslint-plugin-html --save-dev
+</code></pre><h3 id="三、配置vscode"><a href="#三、配置vscode" aria-hidden="true" class="header-anchor">#</a> 三、配置vscode</h3><p>打开vscode配置：文件 -》首选项 -》设置	
+在配置文件增加：</p><pre class="language-json"><code><span class="token property">&quot;standard.validate&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;javascript&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;javascriptreact&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;html&quot;</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token property">&quot;standard.options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;plugins&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;html&quot;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;files.associations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;*.vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>###四、配置package.json</p><pre class="language-json"><code><span class="token property">&quot;standard&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;globals&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ignore&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;plugins&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;html&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;babel-eslint&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;envs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;browser&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;node&quot;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/rule/vscode-eslint.html" class="prev">
+          在vscode中使用eslint
+        </a></span><!----></p></div></div></div></div>
+    <script src="/assets/js/6.0a061588.js" defer></script><script src="/assets/js/app.019e46b7.js" defer></script>
+  </body>
+</html>

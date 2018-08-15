@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KIRA | git commit message规范</title>
+    <meta name="description" content="不能懒">
+    
+    
+    <link rel="preload" href="/assets/css/21.styles.367b178b.css" as="style"><link rel="preload" href="/assets/js/app.019e46b7.js" as="script"><link rel="preload" href="/assets/js/8.009092f2.js" as="script"><link rel="prefetch" href="/assets/js/11.91b58786.js"><link rel="prefetch" href="/assets/js/1.3b0d0829.js"><link rel="prefetch" href="/assets/js/2.4f22a659.js"><link rel="prefetch" href="/assets/js/3.0f5fbe87.js"><link rel="prefetch" href="/assets/js/4.77d25354.js"><link rel="prefetch" href="/assets/js/5.75e861e3.js"><link rel="prefetch" href="/assets/js/6.0a061588.js"><link rel="prefetch" href="/assets/js/7.21cd4cfd.js"><link rel="prefetch" href="/assets/js/9.96d08268.js"><link rel="prefetch" href="/assets/js/10.ecd97e13.js"><link rel="prefetch" href="/assets/js/0.d865b241.js"><link rel="prefetch" href="/assets/js/12.1aa41f0d.js"><link rel="prefetch" href="/assets/js/13.b0a21dde.js"><link rel="prefetch" href="/assets/js/14.a32a2f52.js"><link rel="prefetch" href="/assets/js/15.b3438c76.js"><link rel="prefetch" href="/assets/js/16.9a3d1b2f.js"><link rel="prefetch" href="/assets/js/17.fed3d3c7.js"><link rel="prefetch" href="/assets/js/18.56fadc59.js"><link rel="prefetch" href="/assets/js/19.2b4be690.js"><link rel="prefetch" href="/assets/js/20.4aca21d7.js">
+    <link rel="stylesheet" href="/assets/css/21.styles.367b178b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      KIRA
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link router-link-active">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link router-link-active">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>编码规范</span><!----></p><ul class="sidebar-group-items"><li><a href="/rule/" class="sidebar-link">封面</a></li><li><a href="/rule/git-commit.html" class="active sidebar-link">git commit message规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/rule/git-commit.html#一、规范说明" class="sidebar-link">一、规范说明</a></li><li class="sidebar-sub-header"><a href="/rule/git-commit.html#二、安装和配置" class="sidebar-link">二、安装和配置</a></li></ul></li><li><a href="/rule/vscode-eslint.html" class="sidebar-link">在vscode中使用eslint</a></li><li><a href="/rule/vscode-standard.html" class="sidebar-link">在vscode中使用standard</a></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="git-commit-message规范"><a href="#git-commit-message规范" aria-hidden="true" class="header-anchor">#</a> git commit message规范</h1><h2 id="一、规范说明"><a href="#一、规范说明" aria-hidden="true" class="header-anchor">#</a> 一、规范说明</h2><h3 id="_1、格式"><a href="#_1、格式" aria-hidden="true" class="header-anchor">#</a> 1、格式</h3><pre class="language-text"><code>&lt;type&gt;(&lt;scope&gt;?): &lt;subject&gt;
+空行
+&lt;body&gt;?
+空行
+&lt;footer&gt;?
+</code></pre><p><a href="https://conventionalcommits.org/lang/zh-Hans" target="_blank" rel="noopener noreferrer">Angular规范说明</a></p><h3 id="_2、字段说明"><a href="#_2、字段说明" aria-hidden="true" class="header-anchor">#</a> 2、字段说明</h3><h4 id="type-必填"><a href="#type-必填" aria-hidden="true" class="header-anchor">#</a> type(必填)</h4><p>用于说明commit类别</p><ul><li><strong>feat</strong> 新功能（feature）</li><li><strong>fix</strong> 修复bug</li><li><strong>docs</strong>  文档相关（README、CHANGLELOG）</li><li><strong>style</strong>  代码格式相关（不影响代码逻辑，如缩进、空格、换行等）</li><li><strong>refactor</strong> 代码重构（没有添加新功能或者修复bug）</li><li><strong>pref</strong> 优化相关（提升性能）</li><li><strong>test</strong> 测试用例</li><li><strong>chore</strong> 改变构建流程、或者增加依赖库、工具等</li><li><strong>revert</strong> 回滚到上一个版本</li></ul><blockquote><p>如果type是<em>feat</em>、<em>fix</em>，则commit将出现在chonglog中</p></blockquote><h4 id="scope-选填"><a href="#scope-选填" aria-hidden="true" class="header-anchor">#</a> scope(选填)</h4><p>标识影响范围</p><ul><li><strong>global</strong> 全局</li><li><strong>module</strong> 模块</li><li><strong>component</strong> 组件</li><li><strong>api</strong> 接口</li><li>...</li></ul><h4 id="subject-必填"><a href="#subject-必填" aria-hidden="true" class="header-anchor">#</a> subject(必填)</h4><p>对提交做一个简单的描述</p><ul><li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li><li>第一个字母小写</li><li>长度不大于72（如果需要大量的信息描述，请采用body部分）</li><li>结尾不加句号</li></ul><h4 id="body-选填"><a href="#body-选填" aria-hidden="true" class="header-anchor">#</a> body(选填)</h4><p>对提交的详细描述，可以分成多行</p><ul><li>使用第一人称现在时，比如使用 change 而不是 changed 或者 changes</li><li>说明代码变更的原因，以及和以前代码的对比</li></ul><h4 id="footer-选填"><a href="#footer-选填" aria-hidden="true" class="header-anchor">#</a> footer(选填)</h4><ul><li><strong>BREAKING CHANGE</strong> 不兼容变动, 如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</li><li><strong>关闭Issue</strong> Close开头</li></ul><pre class="language-text"><code>Close #123, #245
+</code></pre><blockquote><p>BREAKING CHANGE将会出现在changelog中</p></blockquote><h3 id="_3、例子"><a href="#_3、例子" aria-hidden="true" class="header-anchor">#</a> 3、例子</h3><h4 id="最简单-type-subject"><a href="#最简单-type-subject" aria-hidden="true" class="header-anchor">#</a> 最简单 <em>type: subject</em></h4><pre class="language-text"><code>feat: add scheme rule page
+chore: add lodash
+</code></pre><h4 id="带scope"><a href="#带scope" aria-hidden="true" class="header-anchor">#</a> 带scope</h4><pre class="language-text"><code>feat(api): add api of task
+</code></pre><h4 id="带body"><a href="#带body" aria-hidden="true" class="header-anchor">#</a> 带body</h4><pre class="language-text"><code>fix: change the params of getTags
+
+后端接口需要添加组件名称参数
+</code></pre><h4 id="带footer"><a href="#带footer" aria-hidden="true" class="header-anchor">#</a> 带footer</h4><pre class="language-text"><code>refactor: change src structure
+
+BREAKING CHANGE: 对src目录结构进行调整，新结构与原来不兼容
+</code></pre><h4 id="完整"><a href="#完整" aria-hidden="true" class="header-anchor">#</a> 完整</h4><pre class="language-text"><code>refactor(src): change src structure
+
+为了实现十万+代码组织
+
+BREAKING CHANGE: 对src目录结构进行调整，新结构与原来不兼容
+</code></pre><h3 id="_4、关于回滚"><a href="#_4、关于回滚" aria-hidden="true" class="header-anchor">#</a> 4、关于回滚</h3><p>如果当前 commit 用于撤销以前的 commit，则必须以revert:开头，后面跟着被撤销 Commit 的 Header</p><pre class="language-text"><code>revert: feat(pencil): add 'graphiteWidth' option
+
+This reverts commit 667ecc1654a317a13331b17617d973392f415f02
+</code></pre><p>body部分的格式是固定的，必须写成</p><pre class="language-text"><code>This reverts commit &amp;lt;hash&gt;
+</code></pre><p>其中的hash是被撤销 commit 的 SHA 标识符。</p><p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p><h2 id="二、安装和配置"><a href="#二、安装和配置" aria-hidden="true" class="header-anchor">#</a> 二、安装和配置</h2><h3 id="_1、安装"><a href="#_1、安装" aria-hidden="true" class="header-anchor">#</a> 1、安装</h3><pre class="language-text"><code>npm install --save-dev @commitlint/cli
+npm install --save-dev @commitlint/config-conventional
+npm install --save-dev husky
+npm install --save-dev conventional-changelog-cli
+</code></pre><p>其中</p><ol><li>规范检查工具：<a href="http://marionebl.github.io/commitlint/#/" target="_blank" rel="noopener noreferrer">commitlint</a></li><li>规范规则风格：<a href="https://github.com/marionebl/commitlint/blob/master/%40commitlint/config-conventional/index.js" target="_blank" rel="noopener noreferrer">config-conventional</a></li><li>git钩子：<a href="https://github.com/typicode/husky" target="_blank" rel="noopener noreferrer">husky</a></li><li>生成changlog：<a href="https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli" target="_blank" rel="noopener noreferrer">conventional-changelog-cli</a></li></ol><h3 id="_2、配置commintlint"><a href="#_2、配置commintlint" aria-hidden="true" class="header-anchor">#</a> 2、配置commintlint</h3><pre class="language-js"><code><span class="token comment">// .commitlintrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'@commitlint/config-conventional'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  rules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 配置额外的rule</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><a href="http://marionebl.github.io/commitlint/#/reference-rules" target="_blank" rel="noopener noreferrer">全部rule</a></p><p><a href="https://github.com/marionebl/commitlint/blob/master/%40commitlint/config-conventional/index.js" target="_blank" rel="noopener noreferrer">conventional的rule</a></p><h3 id="_3、配置git钩子"><a href="#_3、配置git钩子" aria-hidden="true" class="header-anchor">#</a> 3、配置git钩子</h3><pre class="language-json"><code>// package.json
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;commitmsg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;commitlint -E GIT_PARAMS&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="_4、生成changlog"><a href="#_4、生成changlog" aria-hidden="true" class="header-anchor">#</a> 4、生成changlog</h3><pre class="language-json"><code>// package.json
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;changelog&quot;</span><span class="token operator">:</span> <span class="token string">&quot;conventional-changelog -p angular -i CHANGELOG.md -s -r 0&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/rule/" class="prev router-link-active">
+          封面
+        </a></span><span class="next"><a href="/rule/vscode-eslint.html">
+          在vscode中使用eslint
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/assets/js/8.009092f2.js" defer></script><script src="/assets/js/app.019e46b7.js" defer></script>
+  </body>
+</html>

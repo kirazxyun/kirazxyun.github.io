@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KIRA | 实现一个基于字符串的模板引擎</title>
+    <meta name="description" content="不能懒">
+    
+    
+    <link rel="preload" href="/assets/css/21.styles.367b178b.css" as="style"><link rel="preload" href="/assets/js/app.019e46b7.js" as="script"><link rel="preload" href="/assets/js/10.ecd97e13.js" as="script"><link rel="prefetch" href="/assets/js/11.91b58786.js"><link rel="prefetch" href="/assets/js/1.3b0d0829.js"><link rel="prefetch" href="/assets/js/2.4f22a659.js"><link rel="prefetch" href="/assets/js/3.0f5fbe87.js"><link rel="prefetch" href="/assets/js/4.77d25354.js"><link rel="prefetch" href="/assets/js/5.75e861e3.js"><link rel="prefetch" href="/assets/js/6.0a061588.js"><link rel="prefetch" href="/assets/js/7.21cd4cfd.js"><link rel="prefetch" href="/assets/js/8.009092f2.js"><link rel="prefetch" href="/assets/js/9.96d08268.js"><link rel="prefetch" href="/assets/js/0.d865b241.js"><link rel="prefetch" href="/assets/js/12.1aa41f0d.js"><link rel="prefetch" href="/assets/js/13.b0a21dde.js"><link rel="prefetch" href="/assets/js/14.a32a2f52.js"><link rel="prefetch" href="/assets/js/15.b3438c76.js"><link rel="prefetch" href="/assets/js/16.9a3d1b2f.js"><link rel="prefetch" href="/assets/js/17.fed3d3c7.js"><link rel="prefetch" href="/assets/js/18.56fadc59.js"><link rel="prefetch" href="/assets/js/19.2b4be690.js"><link rel="prefetch" href="/assets/js/20.4aca21d7.js">
+    <link rel="stylesheet" href="/assets/css/21.styles.367b178b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      KIRA
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link router-link-active">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/rule/" class="nav-link">编程规范</a></div><div class="nav-item"><a href="/ES6/" class="nav-link">ES6</a></div><div class="nav-item"><a href="/axios/" class="nav-link">axios</a></div><div class="nav-item"><a href="/node/" class="nav-link">node</a></div><div class="nav-item"><a href="/note/" class="nav-link router-link-active">随笔</a></div><div class="nav-item"><a href="/vue/" class="nav-link">vue</a></div><div class="nav-item"><a href="/webpack/" class="nav-link">webpack</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>随笔</span><!----></p><ul class="sidebar-group-items"><li><a href="/note/" class="sidebar-link">/note/</a></li><li><a href="/note/split-frondend.html" class="sidebar-link">浅谈前后端分离</a></li><li><a href="/note/template-negine.html" class="active sidebar-link">实现一个基于字符串的模板引擎</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/note/template-negine.html#一、什么是模板引擎" class="sidebar-link">一、什么是模板引擎</a></li><li class="sidebar-sub-header"><a href="/note/template-negine.html#二、模板引擎的实现原理" class="sidebar-link">二、模板引擎的实现原理</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="实现一个基于字符串的模板引擎"><a href="#实现一个基于字符串的模板引擎" aria-hidden="true" class="header-anchor">#</a> 实现一个基于字符串的模板引擎</h1><h2 id="一、什么是模板引擎"><a href="#一、什么是模板引擎" aria-hidden="true" class="header-anchor">#</a> 一、什么是模板引擎</h2><p>模板引擎定义为输入模板字符串 + 数据，得到渲染过的字符串。它看起来很神秘，能把十分麻烦的字符串拼接，变成像写html那样直观和简单。</p><p>使用模板引擎来替代普通的字符串拼接的优势很明显，首先手写的字符串拼接是很容易出错的，其次是非常的不容易维护，相信如果让你写50行的tpl会是一件很艰难的事情，何况以后还得在上面修修改改，不小心删掉一个+号就能排查半天bug。</p><p>而模板引擎能帮我们解决上面列举的所有问题，你所要做的是按照它给的模板语法，像写html一样写tpl，然后扔一串数据给它就行了。简单、直观还容易维护。</p><p>我们看个简单的例子：</p><pre class="language-text"><code>var data = {
+    name: 'lily',
+    age: 18
+};
+var tpl = &quot;my name is &lt;%name%&gt;, I'm &lt;%age%&gt; years old.&quot;;
+
+tplEngine(tpl, data);
+//&quot;my name is lily, I'm 18 years old.&quot;
+</code></pre><p>再比如：</p><pre class="language-text"><code>&lt;ul&gt;
+    &lt;% for(var i = 0, len = items.length; i &lt; len; i++){ %&gt;
+        &lt;li&gt;&lt;% items[i] %&gt;&lt;/li&gt;
+    &lt;% } %&gt;
+&lt;/ul&gt;
+
+var item = ['香蕉', '苹果', '凤梨'];
+
+tplEngine(tpl, data);
+
+
+//我们希望得到的
+&lt;ul&gt;
+    &lt;li&gt;香蕉&lt;/li&gt;
+    &lt;li&gt;苹果&lt;/li&gt;
+    &lt;li&gt;凤梨&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h2 id="二、模板引擎的实现原理"><a href="#二、模板引擎的实现原理" aria-hidden="true" class="header-anchor">#</a> 二、模板引擎的实现原理</h2><p>既然想要实现一个最简单的模板引擎，我们就先定下目标，这个模板引擎能实现的功能如下：</p><h3 id="功能"><a href="#功能" aria-hidden="true" class="header-anchor">#</a> 功能</h3><ol><li>简单的插值</li></ol><pre class="language-text"><code>&lt;% name %&gt;
+</code></pre><ol start="2"><li>逻辑语句</li></ol><pre class="language-text"><code>&lt;% for(var i = 0, len = array.length; i &lt; len; i++) {
+    var item = array[i];
+    //do something with item
+} %&gt;
+
+</code></pre><h3 id="实现"><a href="#实现" aria-hidden="true" class="header-anchor">#</a> 实现</h3><p>我们将模板作为字符串传进模板引擎后，它会根据它自己的语法对其进行解析，转换成一个渲染方法后返回，然后调用这个方法，并将数据传进去，就能得到渲染好的字符串。这个是模板引擎实现的一个思路，根据这个思路，我们能给出模板引擎的一个框架如下：</p><pre class="language-text"><code>var tplEngine = function(tpl, data) {
+    //对tpl进行转化
+    var render = function (data) {
+        //这部分是实时编译生成的函数体
+    }
+    return render(data);
+}
+</code></pre><p>tplEngine即模板引擎，它接受两个参数，tpl即模板字符串，data是数据。<br>
+render是渲染函数，其接受一个参数，即数据，最终由render返回渲染好的字符串。</p><p>可以看出，我们的关键问题是，渲染方法render的实现：</p><h4 id="_1、将字符串转化为函数"><a href="#_1、将字符串转化为函数" aria-hidden="true" class="header-anchor">#</a> 1、将字符串转化为函数</h4><p>因为我们传进去的模板是字符串，我们先不考虑中间的过程怎么样，我们先考虑当你将得到函数体的字符串格式的时候，怎么办，如何将其变成一个真正可执行的函数，不由得想到了eval，但是明显它并不能实现我们要的。<br>
+这里，就要给出一个大家比较不熟悉的用法：new Function();</p><pre class="language-text"><code>//平常声明fun是这样的：
+var f = function(x, y) { return x + y; };
+
+//用Function是这样的：
+var f = new Function('x', 'y', 'return x + y;');
+//重点是，必须全部是字符串，前面是参数，最后一个参数是函数体
+</code></pre><p>解决了这最后一公里的问题，我们将目光聚焦于如果将字符串转化为render的函数体。</p><h4 id="_2、提取要处理的内容"><a href="#_2、提取要处理的内容" aria-hidden="true" class="header-anchor">#</a> 2、提取要处理的内容</h4><p>我们得到一段字符串，首先得处理是将其进行分解：</p><pre class="language-text"><code>&lt;ul&gt;
+    &lt;% for(var i = 0, len = items.length; i &lt; len; i++){ %&gt;
+        &lt;li&gt;&lt;% items[i] %&gt;&lt;/li&gt;
+    &lt;% } %&gt;
+&lt;/ul&gt;
+</code></pre><p>观察这段模板，我们能初步分解内容为：js和html<br>
+要从一段字符串中提取东西，相信大家都知道要用正则，
+没错我们正是要通过正则来实现匹配内容的提取。</p><p>根据js的边界符，我们给出这样的一个则正表达式：</p><pre class="language-text"><code>var jsReg = /&lt;%([^%&gt;]+)?%&gt;/g;
+</code></pre><p>我们将上面的模板分解到一个数组中试试看：</p><pre class="language-text"><code>//字符串：
+ var tpl = &quot;&lt;ul&gt;&quot; + 
+            &quot;&lt;% for(var i = 0, len = items.length; i &lt; len; i++){ %&gt;&quot; + 
+                &quot;&lt;li&gt;&lt;% items[i] %&gt;&lt;/li&gt;&quot; +
+            &quot;&lt;% } %&gt;&quot; +
+           &quot;&lt;/ul&gt;&quot;;
+
+//提取js的正则
+var match = [];
+var reg = /&lt;%([^%&gt;]+)?%&gt;/g;
+var str = [];
+var cursor = 0;
+while(match = reg.exec(tpl)) {
+    var index = match.index;
+    var jsCode = match[1];
+    var html = tpl.slice(cursor, index);
+    str.push(html)
+    str.push(jsCode);
+    cursor = index + match[0].length;
+}
+str.push(tpl.substr(cursor, tpl.length - cursor));
+console.log(str);
+//&quot;&lt;ul&gt;&quot;
+//&quot; for(var i = 0, len = items.length; i &lt; len; i++){ &quot;
+//&quot;&lt;li&gt;&quot;
+//&quot; items[i] &quot;
+//&quot;&lt;/li&gt;&quot;
+//&quot; } &quot;
+//&quot;&lt;/ul&gt;&quot;
+
+</code></pre><p>结果很棒，是我们想要的结果，将js和html都分离开了。但是其实上面这个分解还不够充分，想想我们一开始定的目标，js是分为插值和逻辑语句的，很容易分辨出：</p><pre class="language-text"><code>//插值：
+&quot;items[i] &quot;
+
+//语句：
+for(var i = 0, len = items.length; i &lt; len; i++){
+}
+</code></pre><p>这边我们再给出一个正则：</p><pre class="language-text"><code>
+//判断逻辑语句的正则
+var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g
+</code></pre><p>可以看到这边是用枚举的方式，这样其实并不完整，我们最后会给出改进方法。
+这样，我们就把模板分解为：</p><ul><li>变量插值</li><li>可执行的逻辑语句</li><li>普通的html字符串</li></ul><h4 id="_3、用数组拼接字符串"><a href="#_3、用数组拼接字符串" aria-hidden="true" class="header-anchor">#</a> 3、用数组拼接字符串</h4><p>如果现在你要写的是字符串拼接，你会怎么做，我们先给出一个平常写字符串拼接的例子，帮助大家理解如何处理上面分解出的3种模板分支：</p><pre class="language-text"><code>var html = [];
+html.push('&lt;ul&gt;');
+for(var i = 0, len = data.items.length; i &lt; len; i++){
+   html.push('&lt;li&gt;', data.items[i], '&lt;/li&gt;');
+}
+html.push('ul');
+return html.join('');
+</code></pre><p>我们经常采用数组来拼接字符串，当然也可以用加号来拼接，看大家习惯，不过这边要说的一点是在低版本的ie中join方法的效率是比较好的，但是在现代流行的浏览器中，加号拼接的效率要远高于join。</p><p>这边，我们不难总结出以下处理方法：</p><pre class="language-text"><code>var html = [];
+if(变量) { 
+    html.push(变量);
+} else if(语句){
+    执行
+} else {
+    html.push(字符串);
+}
+return html.join('');
+</code></pre><p>最终将其进行字符串拼接，函数体就搞定了，如下：</p><pre class="language-text"><code>var funcBody = &quot;var html = [];\n&quot;;
+var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g; 
+var connectFuncBody = function(line, isJsCode) {
+        if(isJsCode) {
+            if(logicReg.test(line)) {
+                funcBody += line + '\n'; //js逻辑就不要放到html.push里面
+            } else {
+        	funcBody += 'html.push(' + line + ');\n'; //变量直接放到html.push
+            }
+        } else {
+        	funcBody += 'html.push(&quot;' + line.replace(/&quot;/g, '\\&quot;') + '&quot;);\n'; //html转义引号后，放到html.push
+        }
+};
+var funcBody = &quot;return html.join('');\n&quot;;
+</code></pre><p>connectFuncBody接受两个参数，line是分解出的某个分支，isJsCode标识它是不是一个js，可能是变量，也可能是语句。<br>
+对于变量，将其拼接到html.push中，这样最终它就会变成html.push(item[i]);<br>
+对于语句，将其直接拼接到函数体上，这样最终它在运行的时候就直接执行了。
+对于字符串，则进行了一次双引号的转义操作，这是因为我们push的时候用的双引号作为string的标识。</p><h4 id="_4、引擎函数"><a href="#_4、引擎函数" aria-hidden="true" class="header-anchor">#</a> 4、引擎函数</h4><p>到此为止，我们已经得到了渲染函数的函数体，也知道如何将其转换为函数，那我们的引擎函数就基本成形了，如下：</p><pre class="language-text"><code>var tplEngine = function(tpl, data) {
+    //对tpl进行转化
+    var match = [];
+    var jsReg = /&lt;%([^%&gt;]+)?%&gt;/g;
+    var logicReg = /^( )*(if|for|else|switch|case|break|{|})(.*)/g;
+    var cursor = 0;
+    var funcBody = 'var html = [];\n';
+    //拼接函数
+    var connectFuncBody = function(line, isJsCode) {
+        if(isJsCode) {
+            if(logicReg.test(line)) {
+                funcBody += line + '\n'; //js逻辑就不要放到html.push里面
+            } else {
+                funcBody += 'html.push(' + line + ');\n';
+            }
+        } else {
+            funcBody += 'html.push(&quot;' + line.replace(/&quot;/g, '\\&quot;') + '&quot;);\n';
+        }
+    };
+    while(match = jsReg.exec(tpl)) {
+        var index = match.index;
+        var jsCode = match[1];
+        var html = tpl.slice(cursor, index);
+        connectFuncBody(html);
+        connectFuncBody(jsCode, true);
+        cursor = index + match[0].length;
+    }
+    connectFuncBody(tpl.substr(cursor, tpl.length - cursor));
+    funcBody += 'return html.join(&quot;&quot;);';
+    return new Function('data', funcBody)(data);
+};
+</code></pre><h4 id="_5、应用"><a href="#_5、应用" aria-hidden="true" class="header-anchor">#</a> 5、应用</h4><p>要真正的用html的方式编写tpl，那就得将tpl存储在script（template）或者 放在text或者textarea里面，它会提供一个ID，我们通过id去找，找的到就将其取出来，text或者textarea用value，其他的用innerHTML。<br>
+在tepEngine外面再包装一层如下：</p><pre class="language-text"><code>var engine = function (str, data) {
+	var html = '';
+	var el = document.getElementById(str);
+	if(!el) {
+		html = str;
+	} else {
+		if(/^(INPUT|TEXTAREA)$/.test(el.nodeName)) {
+			html = el.value;
+		} else {
+			html = el.innerHTML;
+		}
+	}
+	return tplEngine(html, data);
+};
+</code></pre><p>这个函数很好理解，它接受一个字符串和一个数据，字符串可以是一个id，我们先在页面找id，如果没有内容则将其判定为一个模板，直接执行tplEngine。如果根据id找到内容了，则将其取出来，再传到tplEngine里面执行。</p><h4 id="_6、总结"><a href="#_6、总结" aria-hidden="true" class="header-anchor">#</a> 6、总结</h4><p>这段不到30行的代码就能实现一个简单的模板引擎，其中还有很多是需要补充和完善的，但我们今天只是为了学习引擎函数的实现原理，就不再细化。<br>
+总结一下：</p><blockquote><h4 id="模板引擎的实现原理"><a href="#模板引擎的实现原理" aria-hidden="true" class="header-anchor">#</a> 模板引擎的实现原理</h4><ol><li>利用正则匹配出3种模块分支。</li><li>根据每个分支的不同拼接函数体</li><li>利用Function转换渲染函数</li><li>data放进去执行渲染函数</li></ol></blockquote><p>基于字符串的前端模板引擎非常的多，但是其原理大同小异，了解了基本原理再去理解各类模板引擎就容易的多。</p><h3 id="三、遗留问题"><a href="#三、遗留问题" aria-hidden="true" class="header-anchor">#</a> 三、遗留问题</h3><p>这个引擎模板确实有很多要改进的地方，最后的最后，我们给出几个前进的方向。</p><ol><li>预编译：这个可以参考一下传说中最快的模板引擎artTemplate，因为渲染函数都是动态编译的，所以每次都是渲染赋值和编译一起执行，而预编译则是在你要渲染赋值之前就把渲染函数准备好了，类似于require的编译。</li><li>缓存：将同一个id或者模板编译成的渲染函数存起来，以便多次使用，不必每次都编译。</li><li>区分逻辑和变量的边界符，这个就是不必要进行逻辑语句的判断，上文提过要改进的地方。</li><li>对模板去掉前后空格</li></ol><h4 id="参考文章"><a href="#参考文章" aria-hidden="true" class="header-anchor">#</a> 参考文章</h4><p>1、<a href="http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html" target="_blank" rel="noopener noreferrer">JavaScript模板引擎原理，几行代码的事儿</a></p><p>2、<a href="https://segmentfault.com/a/1190000006990480" target="_blank" rel="noopener noreferrer">前端模板的原理和实现</a></p></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/note/split-frondend.html" class="prev">
+          浅谈前后端分离
+        </a></span><!----></p></div></div></div></div>
+    <script src="/assets/js/10.ecd97e13.js" defer></script><script src="/assets/js/app.019e46b7.js" defer></script>
+  </body>
+</html>
