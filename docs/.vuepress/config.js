@@ -64,7 +64,8 @@ module.exports = {
         children: [
           '',
           'data',
-          'transfer'
+          'transfer',
+          'component'
         ]
       }],
       '/webpack/': [{
